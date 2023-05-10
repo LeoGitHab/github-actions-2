@@ -1,0 +1,5 @@
+Flask==2.2.3
+Flask-SQLAlchemy==3.0.3
+typing_extensions==4.5.0
+SQLAlchemy==2.0.10
+pytest==7.0.1

@@ -1,0 +1,50 @@
+name: Test Parking Base
+on:
+  pull_request:
+    branches:
+      - master
+      - dev
+    types: [opened, reopened, edited]
+  push:
+    branches:
+      - master
+      - dev
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.X'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_for_lint.txt
+      - name: Test via black
+        run: black --check --diff main/
+#      - name: Test via isort
+#        run: isort --check-only --diff --profile black main/
+      - name: Test via flake8
+        run: flake8 main/
+      #- name: Test and correct via mypy
+        #run: mypy main/
+
+  test:
+    runs-on: ubuntu-20.04
+    needs: lint
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.X'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements_for_test.txt
+      - name: Test and correct via pytest
+        run: pytest tests/test_flask.py

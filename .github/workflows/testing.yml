@@ -24,11 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements_for_lint.txt
       - name: Test via black
-        run: black --check --diff main/
+        run: black --check --diff parking_base/main/
 #      - name: Test via isort
 #        run: isort --check-only --diff --profile black main/
       - name: Test via flake8
-        run: flake8 main/
+        run: flake8 parking_base/main/
       #- name: Test and correct via mypy
         #run: mypy main/
 
@@ -47,4 +47,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements_for_test.txt
       - name: Test and correct via pytest
-        run: pytest tests/test_flask.py
+        run: pytest parking_base/tests/test_flask.py

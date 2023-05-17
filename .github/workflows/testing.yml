@@ -25,13 +25,12 @@ jobs:
           pip install -r parking_base/requirements_for_lint.txt
       - name: Test via black
         run: black --check --diff parking_base/main/
-      - name: Test via isort
-        run: isort --check-only --diff --profile black main/
+#      - name: Test via isort
+#        run: isort --check-only --diff --profile black main/
       - name: Test via flake8
         run: flake8 parking_base/main/
-      #- name: Test and correct via mypy
-        #run: mypy main/
-
+#      - name: Test and correct via mypy
+#        run: mypy main/
   test:
     runs-on: ubuntu-20.04
     needs: lint

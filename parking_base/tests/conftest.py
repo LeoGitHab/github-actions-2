@@ -1,8 +1,8 @@
 import pytest
 
 from datetime import datetime, timedelta
-from .main.app import create_app, db as _db
-from .main.models import Client, Parking, ClientParking, ParkingLog
+from ..main.app import create_app, db as _db
+from ..main.models import Client, Parking, ClientParking, ParkingLog
 
 
 @pytest.fixture()
@@ -17,7 +17,7 @@ def app():
                           address='Nowhere, 0',
                           opened=True,
                           count_places=2,
-                          count_available_places=2)
+                          available_places=2)
         client_1 = Client(id=1,
                           name='name',
                           surname='surname',
